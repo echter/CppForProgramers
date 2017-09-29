@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/manjaro/Documents/CppForProgramers/Oving1/build",
+  "command": "/usr/bin/c++     -std=c++1y -Wall -Wextra   -o CMakeFiles/Oving1.dir/main.cpp.o -c /home/manjaro/Documents/CppForProgramers/Oving1/main.cpp",
+  "file": "/home/manjaro/Documents/CppForProgramers/Oving1/main.cpp"
+}
+]
