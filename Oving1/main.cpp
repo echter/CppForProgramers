@@ -5,26 +5,33 @@
 #include <iomanip>
 #include <iostream>
 
-// void readTemperature(double temp[], int amount) {}
+void readTemperature() {
+  const char fileName[] = "temperatures.dat";
+  std::ifstream infile;
+  infile.open(fileName);
+  if(!infile) { // innfil kan brukes som et logisk uttrykk
+    std::cout << "Feil ved åpning av innfil." << std::endl;
+    exit(EXIT_FAILURE); // uthopp fra programmet
+  }
+  int number;
+  while(infile >> number) { // leser fram til filslutt
+    std::cout << number << std::endl;
+  }
+  infile.close();
+}
 
-void putTemperature() {
+void putTemperature(double number) {
   
-  const char filnavn[] = "toerpot.dat";
-  std::ofstream utfil;
-  utfil.open(filnavn);
-  if(!utfil) {
+  const char filnavn[] = "temperatures.dat";
+  std::ofstream outfile;
+  outfile.open(filnavn);
+  if(!outfile) {
     std::cout << "Feil ved åpning av utfil." << std::endl;
     exit(EXIT_FAILURE);
   }
-  long int toerPotens = 1L;
-  int potens = 0;
-  while(toerPotens <= LONG_MAX / 2L) {
-    potens++;
-    toerPotens *= 2L;
-    utfil << "2 opphøyd i " << setw(4) << potens << " er "
-          << toerPotens << std::endl;
-  }
-  utfil.close();
+  
+  outfile << number << std::endl;
+  outfile.close();
   
 }
 
@@ -34,21 +41,9 @@ int main() {
   bool exerciseB = true;
 
   if(exerciseB) {
-    // Read temperatures
-    const char fileName[] = "temperatures.dat";
-    std::ifstream infile;
-    infile.open(fileName);
-    if(!infile) { // innfil kan brukes som et logisk uttrykk
-      std::cout << "Feil ved åpning av innfil." << std::endl;
-      exit(EXIT_FAILURE); // uthopp fra programmet
-    }
-    int tall;
-    int sum = 0;
-    while(infile >> tall) { // leser fram til filslutt
-      sum += tall;
-    }
-    std::cout << "Summen er " << sum << std::endl;
-    infile.close();
+    putTemperature(10.0);
+    putTemperature(11.0);
+    readTemperature();
   }
 
   else if(exerciseA) {
