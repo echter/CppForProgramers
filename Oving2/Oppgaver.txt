@@ -1,0 +1,26 @@
+-Oppgave 1
+
+a)
+Se Oving2/main.cpp
+
+b)
+Vi får følgende resultat:
+*p = 3
+*q = 5
+*p = 7 -> 7
+*q += 4 -> 9
+*q = *p + 1 -> 8
+p = q -> *p = 8
+
+Det skrives ut *p = 8 og *q = 8
+Stemmer med programmet
+
+-Oppgave 2
+
+teksten vil bli lagret på den plassen linje peker til.
+Siden linje sin peker ikke er definert kan den havne hvor som helst og føre til skade.
+
+En bedre løsning hadde for eksempel vært:
+const char *linje "Dette er en tekst";
+
+Dermed vet kompilatoren hvor mye plass som skal reserveres og blir lagret på et tryggt sted.
