@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <iostream>
 
-void readTemperature() {
+void readTemperature(int amount) {
   const char fileName[] = "temperatures.dat";
   std::ifstream infile;
   infile.open(fileName);
@@ -13,14 +13,20 @@ void readTemperature() {
     std::cout << "Feil ved åpning av innfil." << std::endl;
     exit(EXIT_FAILURE); // uthopp fra programmet
   }
+  int numberTable[amount];
   int number;
+  int counter = 0;
   while(infile >> number) { // leser fram til filslutt
-    std::cout << number << std::endl;
+    numberTable[counter] = number;
+    counter++;
+  }
+  for (int i = 0; i < amount; i++){
+    std::cout << numberTable[i] << std::endl;
   }
   infile.close();
 }
 
-void putTemperature(double number) {
+void putTemperature(double number[], int amount) {
   
   const char filnavn[] = "temperatures.dat";
   std::ofstream outfile;
@@ -29,8 +35,9 @@ void putTemperature(double number) {
     std::cout << "Feil ved åpning av utfil." << std::endl;
     exit(EXIT_FAILURE);
   }
-  
-  outfile << number << std::endl;
+  for (int i = 0; i < amount; i++){
+    outfile << number[i] << std::endl;
+  }
   outfile.close();
   
 }
@@ -41,9 +48,10 @@ int main() {
   bool exerciseB = true;
 
   if(exerciseB) {
-    putTemperature(10.0);
-    putTemperature(11.0);
-    readTemperature();
+    int amount = 2;
+    double numbers[2] = {10.0, 15.0};
+    putTemperature(numbers,amount);
+    readTemperature(amount);
   }
 
   else if(exerciseA) {
