@@ -49,7 +49,7 @@ int main() {
 
   if(exerciseB) {
     int amount = 2;
-    double numbers[2] = {10.0, 15.0};
+    double numbers[2] = {5, 12};
     putTemperature(numbers,amount);
     readTemperature(amount);
   }
