@@ -56,7 +56,7 @@ public:
         }
 
         bool valid_move(int from_x, int from_y, int to_x, int to_y) const override {
-            return (std::abs(to_x - from_x == 2) && std::abs(to_y - from_y == 1)) || (std::abs(to_y - from_y == 2) && std::abs(to_x - from_x == 1));
+            return (std::abs(to_x - from_x) == 2 && std::abs(to_y - from_y) == 1) || (std::abs(to_x - from_x) == 1 && std::abs(to_y - from_y) == 2);
         }
     };
 
