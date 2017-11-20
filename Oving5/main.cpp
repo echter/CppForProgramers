@@ -11,8 +11,10 @@ public:
         BLACK };
 
     class Piece {
+    private:
+        std::string _type_short;
     public:
-        Piece(Color color) : color(color) {}
+        Piece(Color color, std::string type_short) : color(color), _type_short(type_short) {}
         virtual ~Piece() {}
 
         Color color;
@@ -21,6 +23,14 @@ public:
                 return "white";
             else
                 return "black";
+        }
+
+        std::string type_short() {
+            if (_type_short.length() > 2)
+                _type_short = _type_short.substr(0, 2);
+            else if (_type_short.length() < 2)
+                _type_short = _type_short + " ";
+            return color_string().substr(0, 1) + _type_short;
         }
 
         /// Return color and type of the chess piece
@@ -34,7 +44,7 @@ public:
     private:
         std::string _type = "King";
     public:
-        King(Color color) : Piece(color){}
+        King(Color color) : Piece(color, "Ki"){}
 
         std::string type() const override {
             return color_string() + " " + _type;
@@ -49,7 +59,7 @@ public:
     private:
         std::string _type = "Knight";
     public:
-        Knight(Color color) : Piece(color){}
+        Knight(Color color) : Piece(color, "Kn"){}
 
         std::string type() const override {
             return color_string() + " " + _type;
@@ -65,6 +75,25 @@ public:
         squares.resize(8);
         for (auto &square_column : squares)
             square_column.resize(8);
+    }
+
+    void ViewBoard() {
+        int i = 0;
+        int j = 0;
+        for (auto &column : squares) {
+            char col = i + 65;
+            for (auto &cell : column) {
+                auto piece = cell.get();
+                cout << col << ++j << ":" << " ";
+                if (piece)
+                    cout << piece->type_short() << " ";
+                else
+                    cout << "    ";
+            }
+            cout << endl;
+            i++;
+            j = 0;
+        }
     }
 
     /// 8x8 squares occupied by 1 or 0 chess pieces
@@ -94,6 +123,7 @@ public:
                     }
                 }
                 piece_at_to_pos = move(piece);
+                ViewBoard();
                 return true;
             } else {
                 cout << "can not move " << piece->type() << " from " << from << " to " << to << endl;
