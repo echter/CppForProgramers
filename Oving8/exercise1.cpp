@@ -15,14 +15,14 @@ bool equals(double a, double b) {
 }
 
 int main() {
-  int A = 1;
-  int B = 2;
-  int C = 1;
+  int A = 3;
+  int B = 3;
+  int C = 2;
   cout << "A equals B :" << equals(A, B) << endl;
   cout << "A equals C :" << equals(A, C) << endl;
 
   double a = 1.01;
-  double b = 0.0002;
+  double b = 0.0003;
   double c = 1.00999;
   double d = 1.0099999;
   cout << "a equals b :" << equals(a, b) << endl;
